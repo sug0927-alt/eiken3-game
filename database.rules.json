@@ -1,0 +1,15 @@
+{
+  "rules": {
+    "rooms": {
+      "$room": {
+        ".read": "$room.matches(/^eiken3-[0-9][0-9][0-9][0-9]$/)",
+        "peers": {
+          "$peer": {
+            ".write": "$room.matches(/^eiken3-[0-9][0-9][0-9][0-9]$/) && $peer.matches(/^[a-z0-9]+$/) && $peer.length >= 8 && $peer.length <= 16",
+            ".validate": "!newData.exists() || newData.child('nick').isString() && newData.child('nick').val().length <= 10"
+          }
+        }
+      }
+    }
+  }
+}
